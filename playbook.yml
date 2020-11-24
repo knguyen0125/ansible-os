@@ -11,6 +11,7 @@
     - vlc
     aur_packages:
     - google-chrome
+    - antibody
     flatpak_packages:
     - com.spotify.Client
     - com.slack.Slack
