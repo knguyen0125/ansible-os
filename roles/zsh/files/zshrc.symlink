@@ -1,0 +1,11 @@
+export ZSH_DOT=$HOME/ansible-os/roles/zsh/files
+
+source $ZSH_DOT/env.zsh
+source $ZSH_DOT/aliases.zsh
+
+source $ZSH_DOT/antigen-bundle.zsh
+
+source $ZSH_DOT/conda.zsh
+
+# Configure powerlevel10k
+[[ ! -f $ZSH_DOT/p10k.zsh ]] || source $ZSH_DOT/p10k.zsh

@@ -1,0 +1,20 @@
+- name: Install Intellij IDEA Ultimate Edition
+  aur:
+    name:
+    - intellij-idea-ultimate-edition
+    - intellij-idea-ultimate-edition-jre
+    state: present
+  become: yes
+  become_user: aur_builder
+# Allow usage of nvm and conda in Intellij IDEA
+- name: Add ZSH-Enabled Intellij IDEA to desktop
+  copy:
+    src: "{{ role_path }}/files/intellij-idea.desktop"
+    dest: "/home/{{ create_user }}/.local/share/applications/intellij-idea.desktop"
+    mode: 0644
+- name: Install VS Code
+  aur:
+    name: visual-studio-code-bin
+    state: present
+  become: yes
+  become_user: aur_builder

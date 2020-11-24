@@ -1,0 +1,32 @@
+# Allow typing in Vietnamese
+- name: Install 'ibus-unikey' package
+  community.general.pacman:
+    name: 
+    - ibus-unikey
+    state: present
+  become: true
+- name: Add 'ibus-unikey' to GNOME
+  community.general.dconf:
+    key: "/org/gnome/desktop/input-sources/sources"
+    value: "[('xkb', 'us'), ('ibus', 'Unikey')]"
+- name: Add keybindings to GNOME
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/keybindings/{{ item.key }}"
+    value: "{{ item.value | string }}"
+  with_items:
+  - key: move-to-workspace-1
+    value: "['<Alt><Shift>1']"
+  - key: move-to-workspace-2
+    value: "['<Alt><Shift>2']"
+  - key: move-to-workspace-3
+    value: "['<Alt><Shift>3']"
+  - key: move-to-workspace-4
+    value: "['<Alt><Shift>4']"
+  - key: switch-to-workspace-1
+    value: "['<Alt>1']"
+  - key: switch-to-workspace-2
+    value: "['<Alt>2']"
+  - key: switch-to-workspace-3
+    value: "['<Alt>3']"
+  - key: switch-to-workspace-4
+    value: "['<Alt>4']"

@@ -1,0 +1,5 @@
+roles:
+- name: kewlfft.aur
+- name: jaredhocutt.gnome_extensions
+collections:
+- name: community.general

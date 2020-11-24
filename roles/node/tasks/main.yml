@@ -1,0 +1,9 @@
+- name: Install nvm
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{{ nvm_version }}/install.sh | bash
+  args:
+    creates: "/home/{{ create_user }}/.nvm/nvm.sh"
+- name: "Install node version {{ item }}"
+  shell: >
+    source /home/{{ create_user }}/.nvm/nvm.sh && nvm install {{ item }}
+  loop: "{{ node_versions }}"

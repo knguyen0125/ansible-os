@@ -1,0 +1,27 @@
+- name: Install Docker and Docker Compose
+  community.general.pacman:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+  - docker
+  - docker-compose
+- name: Start 'docker' service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  become: true
+
+# Allow user to run docker without sudo
+- name: Ensure 'docker' group exists
+  group:
+    name: docker
+    state: present
+- name: Add {{ create_user }} to 'docker' group
+  user:
+    name: "{{ create_user }}"
+    groups:
+    - docker
+    append: yes
+  become: true

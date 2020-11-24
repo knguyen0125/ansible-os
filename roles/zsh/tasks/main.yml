@@ -1,0 +1,5 @@
+- name: Symlink zshrc
+  file:
+    src: "{{ role_path }}/files/zshrc.symlink"
+    dest: "/home/{{ create_user }}/.zshrc"
+    follow: yes

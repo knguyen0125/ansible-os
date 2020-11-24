@@ -1,0 +1,31 @@
+---
+- name: install software
+  hosts: localhost
+  remote_user: kevin
+  vars:
+    create_user: kevin
+    system_packages:
+    - albert
+    - solaar
+    - tilix
+    - vlc
+    aur_packages:
+    - google-chrome
+    flatpak_packages:
+    - com.spotify.Client
+    - com.slack.Slack
+  roles:
+    - role: jaredhocutt.gnome_extensions
+      vars:
+        gnome_extension_ids:
+        - 657 # ShellTile
+    - kewlfft.aur
+    - users
+    - common
+    - gnome
+    - ide
+    - node
+    - docker
+    - python
+    - cloud
+    - zsh
