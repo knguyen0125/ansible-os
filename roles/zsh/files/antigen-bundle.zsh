@@ -1,36 +1,24 @@
-# ANTIGEN
-source $ZSH_DOT/antigen.zsh
+source <(antibody init)
 
-antigen use oh-my-zsh
+antibody bundle ohmyzsh/ohmyzsh
+antibody bundle ohmyzsh/ohmyzsh path:plugins/dotenv
+antibody bundle ohmyzsh/ohmyzsh path:plugins/extract
+antibody bundle ohmyzsh/ohmyzsh path:plugins/git
+antibody bundle ohmyzsh/ohmyzsh path:plugins/docker
+antibody bundle ohmyzsh/ohmyzsh path:plugins/docker-compose
+antibody bundle ohmyzsh/ohmyzsh path:plugins/nvm
+antibody bundle ohmyzsh/ohmyzsh path:plugins/aws
+antibody bundle ohmyzsh/ohmyzsh path:plugins/helm
+antibody bundle ohmyzsh/ohmyzsh path:plugins/kubectl
+antibody bundle ohmyzsh/ohmyzsh path:plugins/minikube
 
 # General
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle dotenv
-antigen bundle extract
-
-# Git
-antigen bundle git
-
-# Docker
-antigen bundle docker
-antigen bundle docker-compose
-
-# NodeJS
-antigen bundle nvm
-
-# AWS
-antigen bundle aws
+antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle zsh-users/zsh-completions
+antibody bundle zsh-users/zsh-autosuggestions
 
 # Python
-antigen bundle esc/conda-zsh-completion
+antibody bundle esc/conda-zsh-completion
 
-# Kubernetes
-antigen bundle helm
-antigen bundle kubectl
-antigen bundle minikube
-
-antigen theme romkatv/powerlevel10k
-
-antigen apply
+# Theme
+antibody bundle romkatv/powerlevel10k

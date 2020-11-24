@@ -15,17 +15,17 @@
     - com.spotify.Client
     - com.slack.Slack
   roles:
-    - role: jaredhocutt.gnome_extensions
-      vars:
-        gnome_extension_ids:
-        - 657 # ShellTile
     - kewlfft.aur
+    - cloud
     - users
     - common
     - gnome
     - ide
-    - node
     - docker
     - python
-    - cloud
+    - role: jaredhocutt.gnome_extensions
+      vars:
+        gnome_extension_ids:
+        - 657 # ShellTile
+    - node
     - zsh
