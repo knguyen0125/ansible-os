@@ -30,3 +30,7 @@
     value: "['<Alt>3']"
   - key: switch-to-workspace-4
     value: "['<Alt>4']"
+  - key: 'switch-input-source'
+    value: "['<Alt>z']"
+  - key: 'switch-input-source-backward'
+    value: "['<Shift><Alt>z']"
