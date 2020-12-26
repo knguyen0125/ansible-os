@@ -9,6 +9,8 @@
     - solaar
     - tilix
     - vlc
+    - peek
+    - gifski
     aur_packages:
     - google-chrome
     - antibody
@@ -27,6 +29,6 @@
     - role: jaredhocutt.gnome_extensions
       vars:
         gnome_extension_ids:
-        - 657 # ShellTile
+        - 1723 # ShellTile
     - node
     - zsh

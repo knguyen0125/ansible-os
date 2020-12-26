@@ -1,9 +1,10 @@
+export PATH=$PATH:$HOME/.arkade/bin/
 export ZSH_DOT=$HOME/ansible-os/roles/zsh/files
 
 source $ZSH_DOT/env.zsh
 source $ZSH_DOT/aliases.zsh
 
-source $ZSH_DOT/antigen-bundle.zsh
+source $ZSH_DOT/antibody.zsh
 
 source $ZSH_DOT/conda.zsh
 

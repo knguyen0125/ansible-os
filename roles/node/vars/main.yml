@@ -1,4 +1,4 @@
 nvm_version: "0.37.0"
 node_versions:
-- "node"
-- "lts/*"
+- 15
+- 14

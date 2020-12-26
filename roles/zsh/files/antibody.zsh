@@ -11,6 +11,7 @@ antibody bundle ohmyzsh/ohmyzsh path:plugins/aws
 antibody bundle ohmyzsh/ohmyzsh path:plugins/helm
 antibody bundle ohmyzsh/ohmyzsh path:plugins/kubectl
 antibody bundle ohmyzsh/ohmyzsh path:plugins/minikube
+antibody bundle ohmyzsh/ohmyzsh path:plugins/terraform
 
 # General
 antibody bundle zsh-users/zsh-syntax-highlighting
