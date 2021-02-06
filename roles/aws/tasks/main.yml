@@ -1,0 +1,24 @@
+- name: Install AWS CLI
+  shell: >
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install --update && \
+    rm -rf awscliv2.zip && \
+    rm -rf ./aws
+  args:
+    creates: /usr/local/bin/aws
+  become: true
+- name: Install AWS Config file
+  ansible.builtin.template:
+    src: awsconfig.j2
+    dest: "/home/{{ lookup('env', 'USER') }}/.aws/config"
+- name: Install AWS Credentials file
+  ansible.builtin.template:
+    src: awscredentials.j2
+    dest: "/home/{{ lookup('env', 'USER') }}/.aws/credentials"
+- name: Install Refresh MFA Script
+  ansible.builtin.copy:
+    src: refresh-aws-mfa.py
+    dest: /usr/local/bin/refresh-aws-mfa
+    mode: 0755
+  become: true

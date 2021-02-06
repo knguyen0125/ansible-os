@@ -3,32 +3,34 @@
   hosts: localhost
   remote_user: kevin
   vars:
-    create_user: kevin
     system_packages:
-    - albert
-    - solaar
-    - tilix
-    - vlc
-    - peek
-    - gifski
+      - albert
+      - solaar
+      - tilix
+      - vlc
+      - peek
+      - gifski
+      - ibus
+      - ibus-unikey
     aur_packages:
-    - google-chrome
-    - antibody
+      - google-chrome
+      - antibody
     flatpak_packages:
-    - com.spotify.Client
-    - com.slack.Slack
+      - com.spotify.Client
+      - com.slack.Slack
   roles:
     - kewlfft.aur
-    - cloud
     - users
+    - cloud
     - common
-    - gnome
     - ide
     - docker
     - python
-    - role: jaredhocutt.gnome_extensions
-      vars:
-        gnome_extension_ids:
-        - 1723 # ShellTile
     - node
     - zsh
+    - aws
+    # - gnome
+    # - role: jaredhocutt.gnome_extensions
+    #   vars:
+    #     gnome_extension_ids:
+    #     - 1723 # ShellTile

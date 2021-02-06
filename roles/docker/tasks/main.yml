@@ -4,8 +4,8 @@
     state: present
   become: true
   with_items:
-  - docker
-  - docker-compose
+    - docker
+    - docker-compose
 - name: Start 'docker' service
   service:
     name: docker
@@ -18,10 +18,10 @@
   group:
     name: docker
     state: present
-- name: Add {{ create_user }} to 'docker' group
+- name: Add {{ lookup('env', 'USER') }} to 'docker' group
   user:
-    name: "{{ create_user }}"
+    name: "{{ lookup('env', 'USER') }}"
     groups:
-    - docker
+      - docker
     append: yes
   become: true

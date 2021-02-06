@@ -1,5 +1,6 @@
 - name: Symlink zshrc
   file:
     src: "{{ role_path }}/files/zshrc.symlink"
-    dest: "/home/{{ create_user }}/.zshrc"
+    dest: "/home/{{ lookup('env', 'USER') }}/.zshrc"
     follow: yes
+    state: link

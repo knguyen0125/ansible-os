@@ -1,0 +1,17 @@
+{% for organization in aws_organizations %}
+[{{ organization.organization_name }}]
+mfa_serial = arn:aws:iam::{{ organization.root_account_id }}:mfa/{{ organization.user_name }}
+output = json
+
+[profile {{ organization.user_name }}]
+user_arn = arn:aws:iam::{{ organization.root_account_id }}:user/{{ organization.user_name }}
+source_profile = {{ organization.organization_name }}
+
+{% for profile in organization.profiles %}
+[profile {{ profile.name }}]
+source_profile = {{ organization.user_name }}
+role_arn = arn:aws:iam::{{ profile.account_id }}:role/{{ profile.role_name }}
+region = {{ profile.region }}
+
+{% endfor %}
+{% endfor %}

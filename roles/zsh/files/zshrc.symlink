@@ -10,3 +10,7 @@ source $ZSH_DOT/conda.zsh
 
 # Configure powerlevel10k
 [[ ! -f $ZSH_DOT/p10k.zsh ]] || source $ZSH_DOT/p10k.zsh
+
+export GTK_IAM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IAM_MODULE=ibus

@@ -7,15 +7,15 @@
     creates: "/usr/local/bin/arkade"
 - name: "Install ark packages version {{ item }}"
   shell: >
-    ark get {{ item }}
+    arkade get {{ item }}
   with_items:
-  - minikube
-  - helm
-  - stern
-  - kubectl
-  - k9s
+    - minikube
+    - helm
+    - stern
+    - kubectl
+    - k9s
   args:
-    creates: /home/{{ create_user }}/.arkade/bin/{{ item }}
+    creates: /home/{{ lookup('env', 'USER') }}/.arkade/bin/{{ item }}
 - name: Install cloud packages
   aur:
     name: "{{ item }}"
@@ -23,23 +23,15 @@
   become: yes
   become_user: aur_builder
   with_items:
-  - tfenv
+    - tfenv
 - name: Make sure we have a 'tfenv' group
   group:
     name: tfenv
     state: present
-- name: Add user '{{ create_user }}' to 'tfenv'
+- name: Add user '{{ lookup('env', 'USER') }}' to 'tfenv'
   user:
-    name: "{{ create_user }}"
+    name: "{{ lookup('env', 'USER') }}"
     groups:
-    - tfenv
+      - tfenv
     append: yes
   become: true
-- name: Install AWS CLI
-  pip:
-    name:
-    - python-dateutil
-    - jmespath
-    - s3transfer
-    - awscli
-    extra_args: --user --upgrade
