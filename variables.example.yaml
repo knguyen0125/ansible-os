@@ -1,0 +1,12 @@
+aws_organizations:
+  - organization_name: YourRentals
+    credential:
+      access_key: <ACCESS_KEY>
+      secret_key: <SECRET_KEY>
+    user_name: <USER_NAME>
+    root_account_id: 184126097949
+    profiles:
+      - name: yr-development
+        account_id: 793754848903
+        role_name: Cross_account_Access
+        region: ap-southeast-1

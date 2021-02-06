@@ -2,6 +2,8 @@
 - name: install software
   hosts: localhost
   remote_user: kevin
+  vars_files:
+    - ./variables.yaml
   vars:
     system_packages:
       - albert
