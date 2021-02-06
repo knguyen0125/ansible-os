@@ -2,7 +2,6 @@
   shell: >
     curl -sLS https://dl.get-arkade.dev | sudo sh
   become: yes
-  become_user: aur_builder
   args:
     creates: "/usr/local/bin/arkade"
 - name: "Install ark packages version {{ item }}"

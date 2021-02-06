@@ -8,6 +8,10 @@
   args:
     creates: /usr/local/bin/aws
   become: true
+- name: Create aws folder
+  file: 
+    path: "/home/{{ lookup('env', 'USER') }}/.aws"
+    state: directory
 - name: Install AWS Config file
   ansible.builtin.template:
     src: awsconfig.j2
