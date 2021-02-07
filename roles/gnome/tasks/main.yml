@@ -1,9 +1,8 @@
 # Allow typing in Vietnamese
 - name: Install 'ibus-unikey' package
   community.general.pacman:
-    name: 
-    - ibus-unikey
-    state: present
+    name: ibus-unikey
+    state: latest
   become: true
 - name: Add 'ibus-unikey' to GNOME
   community.general.dconf:

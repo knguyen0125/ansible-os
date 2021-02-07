@@ -15,17 +15,15 @@
       - ibus
       - ibus-unikey
       - neovim
-      - yay
-      - base-devel
     aur_packages:
       - google-chrome
-      - antibody
     flatpak_packages:
       - com.spotify.Client
       - com.slack.Slack
   roles:
     - kewlfft.aur
     - users
+    - initial
     - common
     - aws
     - cloud
@@ -35,7 +33,7 @@
     - node
     - zsh
     - gnome
-    # - role: jaredhocutt.gnome_extensions
-    #   vars:
-    #     gnome_extension_ids:
-    #     - 1723 # ShellTile
+    - role: jaredhocutt.gnome_extensions
+      vars:
+        gnome_extension_ids:
+        - 1723 # ShellTile

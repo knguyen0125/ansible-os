@@ -1,6 +1,11 @@
+- name: Install antibody as zsh package manager
+  aur:
+    name: antibody
+    state: latest
 - name: Symlink zshrc
   file:
     src: "{{ role_path }}/files/zshrc.symlink"
     dest: "/home/{{ lookup('env', 'USER') }}/.zshrc"
     follow: yes
     state: link
+    force: yes

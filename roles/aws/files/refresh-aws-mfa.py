@@ -11,6 +11,8 @@ if(len(sys.argv) <= 1 ):
 
 home = expanduser("~")
 requestedProfile = sys.argv[1]
+# Install profile for terraform
+requestedProfileTerraform = "%s-terraform" % requestedProfile
 awsConfig = configparser.ConfigParser()
 awsCred   = configparser.ConfigParser()
 
@@ -29,14 +31,26 @@ except KeyError:
 profiles = set( awsCred.sections())
 configprofiles = set( awsConfig.sections())
 
+requestedProfileExists = False
+
 if( requestedProfile in profiles and "profile " + requestedProfile in configprofiles):
     print("Updating %s profile" % requestedProfile)
+    requestedProfileExists = True
 else:
     if( "profile " + requestedProfile in configprofiles):
         print("Creating %s credentials profile" % requestedProfile)
         awsCred.add_section(requestedProfile)
+        requestedProfileExists = True
     else:
         exit("No such profile \"%s\" in config" % requestedProfile )
+
+if ( requestedProfileExists ):
+    if ( requestedProfileTerraform in profiles ):
+        print("Updating %s profile" % requestedProfileTerraform)
+    else:
+        print("Creating %s profile" % requestedProfileTerraform)
+        awsCred.add_section(requestedProfileTerraform)
+    
 
 try:
     OneTimeNumber = int(input("OTP from device: "))
@@ -56,6 +70,9 @@ except json.decoder.JSONDecodeError:
 awsCred[requestedProfile]['aws_access_key_id']     = myjson['Credentials']['AccessKeyId']
 awsCred[requestedProfile]['aws_secret_access_key'] = myjson['Credentials']['SecretAccessKey']
 awsCred[requestedProfile]['aws_session_token']     = myjson['Credentials']['SessionToken']
+awsCred[requestedProfileTerraform]['aws_access_key_id']     = myjson['Credentials']['AccessKeyId']
+awsCred[requestedProfileTerraform]['aws_secret_access_key'] = myjson['Credentials']['SecretAccessKey']
+awsCred[requestedProfileTerraform]['aws_session_token']     = myjson['Credentials']['SessionToken']
 
 with open('%s/.aws/credentials' % home, 'w') as awsCredfile:
     awsCred.write(awsCredfile)

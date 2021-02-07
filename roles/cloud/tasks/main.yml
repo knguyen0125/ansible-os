@@ -19,8 +19,6 @@
   aur:
     name: "{{ item }}"
     state: present
-  become: yes
-  become_user: aur_builder
   with_items:
     - tfenv
 - name: Make sure we have a 'tfenv' group

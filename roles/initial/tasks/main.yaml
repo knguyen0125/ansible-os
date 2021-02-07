@@ -1,0 +1,12 @@
+- name: Upgrade distribution to latest
+  community.general.pacman:
+    update_cache: yes
+    upgrade: yes
+  become: true
+- name: Install AUR helpers
+  community.general.pacman:
+    name:
+      - yay
+      - base-devel
+    state: latest
+  become: true

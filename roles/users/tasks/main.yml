@@ -18,4 +18,3 @@
       - wheel
     append: yes
   become: true
-- include_tasks: aur.yml

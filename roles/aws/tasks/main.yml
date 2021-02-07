@@ -8,19 +8,21 @@
   args:
     creates: /usr/local/bin/aws
   become: true
-- name: Create aws folder
-  file: 
-    path: "/home/{{ lookup('env', 'USER') }}/.aws"
-    state: directory
-- name: Install AWS Config file
-  ansible.builtin.template:
-    src: awsconfig.j2
-    dest: "/home/{{ lookup('env', 'USER') }}/.aws/config"
-- name: Install AWS Credentials file
-  ansible.builtin.template:
-    src: awscredentials.j2
-    dest: "/home/{{ lookup('env', 'USER') }}/.aws/credentials"
-- name: Install Refresh MFA Script
+- name: Install AWS Credentials
+  block:
+    - name: Ensure ~/.aws folder exists
+      file: 
+        path: "/home/{{ lookup('env', 'USER') }}/.aws"
+        state: directory
+    - name: Install ~/.aws/config file
+      ansible.builtin.template:
+        src: awsconfig.j2
+        dest: "/home/{{ lookup('env', 'USER') }}/.aws/config"
+    - name: Install ~/.aws/credentials file
+      ansible.builtin.template:
+        src: awscredentials.j2
+        dest: "/home/{{ lookup('env', 'USER') }}/.aws/credentials"
+- name: Install Refresh MFA Script Utility
   ansible.builtin.copy:
     src: refresh-aws-mfa.py
     dest: /usr/local/bin/refresh-aws-mfa

@@ -1,4 +1,6 @@
-nvm_version: "0.37.0"
+nvm_version: "0.37.2"
 node_versions:
 - 15
 - 14
+- 12
+- 10

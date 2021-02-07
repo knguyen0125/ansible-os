@@ -1,19 +1,23 @@
 - name: Install common packages
   community.general.pacman:
     name: "{{ item }}"
-    state: present
+    state: latest
   become: true
   loop: "{{ system_packages }}"
 - name: Install AUR packages
   aur:
     name: "{{ item }}"
-    state: present
+    state: latest
   loop: "{{ aur_packages }}"
-  become: yes
-  become_user: aur_builder
 - name: Install flatpak packages
-  community.general.flatpak:
-    name: "{{ item }}"
-    state: present
-  become: true
-  loop: "{{ flatpak_packages }}"
+  block:
+  - name: Ensure flatpak is installed
+    community.general.pacman:
+      name: flatpak
+      state: latest
+  - name: Install flatpak packages
+    community.general.flatpak:
+      name: "{{ item }}"
+      state: present
+    become: true
+    loop: "{{ flatpak_packages }}"

@@ -1,7 +1,7 @@
 - name: Install Docker and Docker Compose
   community.general.pacman:
     name: "{{ item }}"
-    state: present
+    state: latest
   become: true
   with_items:
     - docker
