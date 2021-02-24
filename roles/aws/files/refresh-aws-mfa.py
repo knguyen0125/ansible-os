@@ -21,7 +21,7 @@ awsCred.read('%s/.aws/credentials' % home)
 
 
 try:
-    mfaARN = awsConfig[awsConfig["profile " + requestedProfile]['source_profile']]['mfa_serial']
+    mfaARN = awsConfig[awsConfig["profile " + requestedProfile]['x_source_profile']]['mfa_serial']
 except KeyError:
     try:
         mfaARN = awsConfig['default']['mfa_serial']
@@ -58,7 +58,7 @@ except ValueError:
     exit("OTP must be a number")
 
 
-response = os.popen("aws --profile %s sts get-session-token --serial-number  %s --token-code %s" % ( awsConfig["profile " + requestedProfile]['source_profile'],
+response = os.popen("aws --profile %s sts get-session-token --serial-number  %s --token-code %s" % ( awsConfig["profile " + requestedProfile]['x_source_profile'],
                                                                                                  mfaARN,
                                                                                                  str(OneTimeNumber).zfill(6))).read()
 

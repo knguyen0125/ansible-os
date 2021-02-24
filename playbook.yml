@@ -17,6 +17,7 @@
       - neovim
     aur_packages:
       - google-chrome
+      - postman-bin
     flatpak_packages:
       - com.spotify.Client
       - com.slack.Slack
@@ -36,4 +37,4 @@
     - role: jaredhocutt.gnome_extensions
       vars:
         gnome_extension_ids:
-        - 1723 # ShellTile
+          - 1723 # ShellTile

@@ -3,13 +3,16 @@
 mfa_serial = arn:aws:iam::{{ organization.root_account_id }}:mfa/{{ organization.user_name }}
 output = json
 
-[profile {{ organization.user_name }}]
+[profile {{ organization.organization_name }}-{{ organization.user_name }}]
 user_arn = arn:aws:iam::{{ organization.root_account_id }}:user/{{ organization.user_name }}
-source_profile = {{ organization.organization_name }}
+# rename source_profile to x_source_profile to circumvent issue with source_profile requiring role_arn
+x_source_profile = {{ organization.organization_name }}
+mfa_serial = arn:aws:iam::{{ organization.root_account_id }}:mfa/{{ organization.user_name }}
+output = json
 
 {% for profile in organization.profiles %}
-[profile {{ profile.name }}]
-source_profile = {{ organization.user_name }}
+[profile {{ organization.organization_name }}-{{ profile.name }}]
+source_profile = {{ organization.organization_name }}-{{ organization.user_name }}
 role_arn = arn:aws:iam::{{ profile.account_id }}:role/{{ profile.role_name }}
 region = {{ profile.region }}
 
